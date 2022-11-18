@@ -7,7 +7,7 @@ COPY src src
 
 RUN unset MAVEN_CONFIG && ./mvnw -B package
 
-FROM openjdk:17.0.2-jdk-slim
+FROM openjdk:17.0.2-jdk-slim AS release
 
 COPY --from=build target/hack-sovcom-1.0.jar .
 EXPOSE 8080
