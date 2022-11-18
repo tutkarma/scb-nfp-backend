@@ -1,6 +1,6 @@
-package dev.sorokin.hacksovcom.db.mongo.user
+package dev.sorokin.hacksovcom.user
 
-import dev.sorokin.hacksovcom.service.user.domain.User
+import dev.sorokin.hacksovcom.user.domain.User
 import org.springframework.data.mongodb.repository.MongoRepository
 
 

@@ -1,7 +1,7 @@
 package dev.sorokin.hacksovcom.api.security
 
-import dev.sorokin.hacksovcom.service.user.UserService
-import dev.sorokin.hacksovcom.service.user.domain.User
+import dev.sorokin.hacksovcom.user.UserService
+import dev.sorokin.hacksovcom.user.domain.User
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -48,6 +48,16 @@ class AuthFilter(private val userService: UserService, private val encoder: Pass
             null, emptyList()
         )
         auth.details = user
+        SecurityContextHolder.getContext().authentication = auth
+    }
+
+    private fun generateFailAuth() {
+        val auth = UsernamePasswordAuthenticationToken(
+            null,
+            null,
+            emptyList()
+        )
+        auth.isAuthenticated = false
         SecurityContextHolder.getContext().authentication = auth
     }
 

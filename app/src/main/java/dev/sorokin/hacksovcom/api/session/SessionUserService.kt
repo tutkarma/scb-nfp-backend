@@ -1,6 +1,6 @@
 package dev.sorokin.hacksovcom.api.session
 
-import dev.sorokin.hacksovcom.service.user.domain.User
+import dev.sorokin.hacksovcom.user.domain.User
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 

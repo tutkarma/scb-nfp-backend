@@ -1,4 +1,4 @@
-package dev.sorokin.hacksovcom.service.user.domain
+package dev.sorokin.hacksovcom.user.domain
 
 import lombok.Data
 import org.springframework.data.annotation.Id

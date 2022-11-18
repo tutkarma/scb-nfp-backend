@@ -1,7 +1,7 @@
-package dev.sorokin.hacksovcom.service.user
+package dev.sorokin.hacksovcom.user
 
-import dev.sorokin.hacksovcom.db.mongo.user.UserRepoMongo
-import dev.sorokin.hacksovcom.service.user.domain.User
+import dev.sorokin.hacksovcom.user.UserRepoMongo
+import dev.sorokin.hacksovcom.user.domain.User
 import org.springframework.stereotype.Service
 import java.lang.RuntimeException
 

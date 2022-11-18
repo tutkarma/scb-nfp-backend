@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-@EnableMongoRepositories(basePackages = "dev.sorokin.hacksovcom.db")
+@EnableMongoRepositories(basePackages = "dev.sorokin.hacksovcom")
 public class HackSovcomApplication {
 
     public static void main(String[] args) {

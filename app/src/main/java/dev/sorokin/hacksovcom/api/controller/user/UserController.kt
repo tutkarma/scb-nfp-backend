@@ -3,7 +3,7 @@ package dev.sorokin.hacksovcom.api.controller.user
 import dev.sorokin.hacksovcom.api.controller.user.dto.RegisterDto
 import dev.sorokin.hacksovcom.api.controller.user.dto.UserDto
 import dev.sorokin.hacksovcom.api.session.SessionUserService
-import dev.sorokin.hacksovcom.service.user.UserService
+import dev.sorokin.hacksovcom.user.UserService
 import lombok.AllArgsConstructor
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

@@ -1,6 +1,6 @@
 package dev.sorokin.hacksovcom.api.security
 
-import dev.sorokin.hacksovcom.service.user.UserService
+import dev.sorokin.hacksovcom.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
