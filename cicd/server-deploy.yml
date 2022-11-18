@@ -20,13 +20,14 @@
       project_src: /opt/sovcom/cicd
       state: present
       build: yes
+    environment:
+      MYSQL_ROOT_PASSWORD: '{{ MYSQL_ROOT_PASSWORD }}'
     register: output
 
   - name: Restart
     docker_compose:
       project_src: /opt/sovcom/cicd
       services:
-        - db
         - app
       state: present
       restarted: true
