@@ -30,6 +30,8 @@
         - app
       state: present
       restarted: true
+    environment:
+      MYSQL_ROOT_PASSWORD: '{{ MYSQL_ROOT_PASSWORD }}'
     register: output
 
   - debug:
