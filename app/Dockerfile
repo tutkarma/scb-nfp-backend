@@ -5,7 +5,9 @@ COPY mvnw .
 COPY pom.xml .
 COPY src src
 
-RUN unset MAVEN_CONFIG && ./mvnw -B package
+RUN chmod +x mvnw && \
+    unset MAVEN_CONFIG && \
+    ./mvnw -B package
 
 FROM openjdk:17.0.2-jdk-slim AS release
 
