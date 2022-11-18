@@ -21,6 +21,5 @@ jobs:
             194.58.123.176 ansible_user=root
           options: |
             -e 'ansible_python_interpreter=/usr/bin/python3'
-            --extra-vars 'MYSQL_ROOT_PASSWORD=${{secrets.MYSQL_ROOT_PASSWORD}}'
             -u root
             -vvv
