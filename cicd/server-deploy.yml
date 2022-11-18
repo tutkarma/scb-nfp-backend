@@ -26,6 +26,7 @@
     docker_compose:
       project_src: /opt/sovcom/cicd
       services:
+        - db
         - app
       state: present
       restarted: true
