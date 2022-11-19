@@ -1,4 +1,4 @@
-name: Run server deploy
+name: Run kafka deploy
 
 on:
   workflow_dispatch:
@@ -22,5 +22,5 @@ jobs:
           options: |
             -e 'ansible_python_interpreter=/usr/bin/python3'
             -u root
-            --skip-tags [kafka]
+            --tags [kafka]
             -vvv

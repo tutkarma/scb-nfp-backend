@@ -10,6 +10,7 @@
     loop:
       - 'app'
       - 'cicd'
+    tags: always
 
   - name: Install docker module
     pip:
@@ -22,6 +23,9 @@
       build: yes
     register: output
 
+  - debug:
+      var: output
+
   - name: Restart
     docker_compose:
       project_src: /opt/sovcom/cicd
@@ -30,6 +34,18 @@
       state: present
       restarted: true
     register: output
+
+  - debug:
+      var: output
+
+  - name: Run kafka
+    docker_compose:
+      project_src: /opt/sovcom/cicd
+      files: [docker-compose.kafka.yml]
+      state: present
+      build: yes
+    register: output
+    tags: kafka
 
   - debug:
       var: output
