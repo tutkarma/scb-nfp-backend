@@ -3,6 +3,9 @@
   gather_facts: no
   become: yes
   tasks:
+  - name: Cleanup
+    command: 'rm -rf /opt/sovcom/*'
+
   - name: Copy src
     copy:
       src: '../{{ item }}/'
