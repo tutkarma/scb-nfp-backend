@@ -22,5 +22,5 @@ jobs:
           options: |
             -e 'ansible_python_interpreter=/usr/bin/python3'
             -u root
-            --tags [kafka]
+            --tags 'kafka'
             -vvv
