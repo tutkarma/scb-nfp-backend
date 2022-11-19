@@ -1,5 +1,6 @@
 package dev.sorokin.hacksovcom.api.controller.user.dto
 
+import dev.sorokin.hacksovcom.api.toSeconds
 import dev.sorokin.hacksovcom.service.user.domain.User
 import dev.sorokin.hacksovcom.service.user.domain.UserRole
 
@@ -8,6 +9,6 @@ fun User.toDto(): UserDto = UserDto(
     name,
     phone,
     email,
-    birthDate.toString(),
+    birthDate.toSeconds(),
     UserRole.findById(roleId).toString()
 )

@@ -35,13 +35,8 @@ class ServiceLayerInterceptor(private val sessionUserService: SessionUserService
             .getAnnotation(Required::class.java)
             .value
         if (user.roleId == required.id) return
-        throw RuntimeException("Пользователь не имеет прав на своершение операции")
+        throw RuntimeException("Пользователь не имеет прав на совершение операции. Необходима роль: ${required.name}")
     }
-
-//    @Override
-//    fun onApplicationEvent(event: ContextRefreshedEvent?) {
-//        isApplicationInitializingWorks = false
-//    }
 
     companion object {
         private val logger = LoggerFactory.getLogger(ServiceLayerInterceptor::class.java)

@@ -1,4 +1,4 @@
-package dev.sorokin.hacksovcom.repo
+package dev.sorokin.hacksovcom.repo.user
 
 import dev.sorokin.hacksovcom.service.user.domain.User
 import lombok.AllArgsConstructor

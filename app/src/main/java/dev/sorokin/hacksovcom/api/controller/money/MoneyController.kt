@@ -1,21 +1,46 @@
 package dev.sorokin.hacksovcom.api.controller.money
 
-import org.springframework.web.bind.annotation.RestController
-import java.util.DoubleSummaryStatistics
+import dev.sorokin.hacksovcom.api.session.SessionUserService
+import dev.sorokin.hacksovcom.service.money.MoneyService
+import io.swagger.v3.oas.annotations.Operation
+import org.springframework.web.bind.annotation.*
 
 @RestController
-class MoneyController {
+@RequestMapping("/api/money")
+class MoneyController(
+    val moneyService: MoneyService,
+    val sessionUserService: SessionUserService
+) {
 
-    fun depositToAccount(accountId: Long, amount: Double) {
-
+    @Operation(summary = "Пополнить счет по ID счета")
+    @PostMapping("/deposit/{accountId}")    //todo logging it
+    fun depositToAccount(
+        @PathVariable accountId: Long,
+        @RequestParam(name = "amount") amount: Double
+    ) {
+        val user = sessionUserService.getSessionUser()
+        moneyService.deposit(user, accountId, amount)
     }
 
-    fun transferToAnotherAccount(accountId: Long, amount: Double, currencyName: String) {
-
+    @Operation(summary = "снять со счета по его ID")
+    @PostMapping("/withdraw/{accountId}")
+    fun withdrawFromAccount(
+        @PathVariable accountId: Long,
+        @RequestParam(name = "amount") amount: Double
+    ) {
+        val user = sessionUserService.getSessionUser()
+        moneyService.withdraw(user, accountId, amount)
     }
 
-    fun buyCurrency() {
-
+    @Operation(summary = "Купить валюту за другую валюту")
+    @PostMapping("/buy")
+    fun buyCurrency(
+        @RequestParam(name = "target") target: String,
+        @RequestParam(name = "source") source: String,
+        @RequestParam(name = "target") amount: Double
+    ) {
+        val user = sessionUserService.getSessionUser()
+        moneyService.buyCurrency(source, target, amount, user)
     }
 
 }

@@ -1,11 +1,10 @@
 package dev.sorokin.hacksovcom.api.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import dev.sorokin.hacksovcom.api.excpetion.ErrorDto
-import dev.sorokin.hacksovcom.repo.UserJpaRepo
+import dev.sorokin.hacksovcom.api.security.excpetion.ErrorDto
+import dev.sorokin.hacksovcom.repo.user.UserJpaRepo
 import dev.sorokin.hacksovcom.service.user.UserService
 import dev.sorokin.hacksovcom.service.user.domain.User
-import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder

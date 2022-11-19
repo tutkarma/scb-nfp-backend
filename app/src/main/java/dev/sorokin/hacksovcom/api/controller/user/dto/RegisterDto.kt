@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor
 @Schema(description = "Данные для регистрации пользователя")
 class RegisterDto(
 //    @Schema(description = "ФИО", example = "ВАся")
-    val name: String,
-    val phone: String,
-    val email: String,
-    val passport: String,
-    var password: String,
-    val birthDate: String = "2022-10-07 10:10:10",
+    @Schema(description = "ФИО") val name: String,
+    @Schema(description = "Номер телефона") val phone: String,
+    @Schema(description = "Почта") val email: String,
+    @Schema(description = "ДАнные пасспорта") val passport: String,
+    @Schema(description = "Пароль") var password: String,
+    @Schema(description = "Дата рождения, timestanp в секундах") val birthDate: Long
 )

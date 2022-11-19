@@ -2,8 +2,9 @@ package dev.sorokin.hacksovcom.service.user
 
 import dev.sorokin.hacksovcom.api.controller.user.dto.RegisterDto
 import dev.sorokin.hacksovcom.api.security.Required
-import dev.sorokin.hacksovcom.repo.UserJpaRepo
-import dev.sorokin.hacksovcom.repo.UserRegistrationRequestJpaRepo
+import dev.sorokin.hacksovcom.api.toTimestamp
+import dev.sorokin.hacksovcom.repo.user.UserJpaRepo
+import dev.sorokin.hacksovcom.repo.user.UserRegistrationRequestJpaRepo
 import dev.sorokin.hacksovcom.service.user.domain.User
 import dev.sorokin.hacksovcom.service.user.domain.UserRegistrationRequest
 import dev.sorokin.hacksovcom.service.user.domain.UserRole
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.sql.Timestamp
 import java.time.Instant
+import java.util.TimeZone
 
 @Service
 class UserService(
@@ -81,7 +83,7 @@ private fun RegisterDto.toRequest(): UserRegistrationRequest {
         email,
         passport,
         password,
-        Timestamp.valueOf(birthDate),
+        birthDate.toTimestamp(),
         Timestamp.from(Instant.now())
     )
 }

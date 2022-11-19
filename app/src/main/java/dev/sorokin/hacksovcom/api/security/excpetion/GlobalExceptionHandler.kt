@@ -1,4 +1,4 @@
-package dev.sorokin.hacksovcom.api.excpetion
+package dev.sorokin.hacksovcom.api.security.excpetion
 
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus

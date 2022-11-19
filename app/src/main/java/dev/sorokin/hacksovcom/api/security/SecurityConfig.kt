@@ -1,8 +1,8 @@
 package dev.sorokin.hacksovcom.api.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import dev.sorokin.hacksovcom.api.excpetion.ErrorDto
-import dev.sorokin.hacksovcom.repo.UserJpaRepo
+import dev.sorokin.hacksovcom.api.security.excpetion.ErrorDto
+import dev.sorokin.hacksovcom.repo.user.UserJpaRepo
 import dev.sorokin.hacksovcom.service.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
