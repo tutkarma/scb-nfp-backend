@@ -12,4 +12,5 @@ class UserDto(
     var email: String,
     @Schema(description = "дата рождения timestamp в секундах") var birthDate: Long,
     @Schema(description = "Роль ADMIN или USER") role: String,
+    var isBlocked: Boolean
 )

@@ -50,7 +50,7 @@ class AdminController(
     )
     @GetMapping("")
     fun getAll(): List<UserDto> {
-        return userService.getAllUsers().map { it.toDto() }
+        return userService.getAllUsers(false).map { it.toDto() }
     }
 
     @Operation(

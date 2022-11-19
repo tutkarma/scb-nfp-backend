@@ -10,5 +10,6 @@ fun User.toDto(): UserDto = UserDto(
     phone,
     email,
     birthDate.toSeconds(),
-    UserRole.findById(roleId).toString()
+    UserRole.findById(roleId).toString(),
+    isBlocked
 )

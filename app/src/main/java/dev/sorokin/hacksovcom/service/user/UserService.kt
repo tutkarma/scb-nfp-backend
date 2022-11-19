@@ -45,8 +45,11 @@ class UserService(
     }
 
     @Required(UserRole.ADMIN)
-    fun getAllUsers(): List<User> {
-        return userRepo.findAll()
+    fun getAllUsers(withAdmins: Boolean): List<User> {
+        val result = userRepo.findAll()
+        if(withAdmins)
+            return result;
+        return result.filter { it.roleId != UserRole.ADMIN.id }
     }
 
     @Required(UserRole.ADMIN)
