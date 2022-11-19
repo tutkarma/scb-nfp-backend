@@ -5,6 +5,7 @@ import dev.sorokin.hacksovcom.api.security.Required
 import dev.sorokin.hacksovcom.api.toTimestamp
 import dev.sorokin.hacksovcom.repo.user.UserJpaRepo
 import dev.sorokin.hacksovcom.repo.user.UserRegistrationRequestJpaRepo
+import dev.sorokin.hacksovcom.service.account.CurrencyAccountService
 import dev.sorokin.hacksovcom.service.user.domain.User
 import dev.sorokin.hacksovcom.service.user.domain.UserRegistrationRequest
 import dev.sorokin.hacksovcom.service.user.domain.UserRole
@@ -18,7 +19,8 @@ import java.util.TimeZone
 class UserService(
     val userRepo: UserJpaRepo,
     val passwordEncoder: PasswordEncoder,
-    val userRegistrationRepo: UserRegistrationRequestJpaRepo
+    val userRegistrationRepo: UserRegistrationRequestJpaRepo,
+    val accountService: CurrencyAccountService,
 ) {
 
     fun findByName(login: String): User? {
@@ -66,7 +68,9 @@ class UserService(
     }
 
     fun saveUser(dto: UserRegistrationRequest): User {
-        return userRepo.save(dto.toUser())
+        return userRepo.save(dto.toUser()).also {
+            accountService.createDefaultAccount(it)
+        }
     }
 
     private fun createRegistrationRequest(dto: RegisterDto) {

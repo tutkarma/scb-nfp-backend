@@ -15,7 +15,10 @@ class AuditController(
     val sessionUserService: SessionUserService
 ) {
 
-    @Operation(summary = "Получить данные пользователя о его действиях")
+    @Operation(
+        summary = "Получить данные пользователя о его действиях",
+        description = "НЕ реализовано"
+    )
     @GetMapping
     fun getUserAudit(): UserAudit {
         val user = sessionUserService.getSessionUser()

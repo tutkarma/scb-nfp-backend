@@ -18,13 +18,19 @@ class UserController(
     val sessionUserService: SessionUserService,
 ) {
 
-    @Operation(summary = "Создание нового пользователя")
+    @Operation(
+        summary = "Создание нового пользователя",
+        description = "реализовано"
+    )
     @PostMapping("/register")
     fun registerUser(@RequestBody dto: RegisterDto) {
         userService.registerUser(dto)
     }
 
-    @Operation(summary = "Вход в систему (нужен токен в хедерах)")
+    @Operation(
+        summary = "Вход в систему (нужен токен в хедерах)",
+        description = "реализовано"
+    )
     @GetMapping("/login")
     fun getUser(): UserDto {
         return sessionUserService.getSessionUser().toDto();

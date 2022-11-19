@@ -22,8 +22,10 @@ class AdminController(
 ) {
 
 
-    @Operation(summary = "Подтверждение регистрации пользователя. id - id регистрации." +
-            "isAccepted - принимать или нет запрос - true/false")
+    @Operation(
+        summary = "Подтверждение регистрации пользователя. id - id регистрации." +
+                "isAccepted - принимать или нет запрос - true/false", description = "реализовано"
+    )
     @GetMapping("/registration/accept/{id}/{isAccepted}")
     fun acceptRequest(
         @PathVariable @Schema(description = "GGGGGGGGGGDLMFDnnj") id: Long,
@@ -32,20 +34,29 @@ class AdminController(
         return userService.acceptRegistration(id, isAccepted);
     }
 
-    @Operation(summary = "Получение списка всех запросов на регистрацию")
+    @Operation(
+        summary = "Получение списка всех запросов на регистрацию +++",
+        description = "реализовано"
+    )
     @GetMapping("/registration")
     fun getAllRequests(): List<UserRegistrationRequest> {
         return userService.getAllRegistrationRequests()
     }
 
 
-    @Operation(summary = "Получение списка всех пользователей")
+    @Operation(
+        summary = "Получение списка всех пользователей +++",
+        description = "реализовано"
+    )
     @GetMapping("")
     fun getAll(): List<UserDto> {
         return userService.getAllUsers().map { it.toDto() }
     }
 
-    @Operation(summary = "Заблокировать пользователя с id. isBlock - true или false")
+    @Operation(
+        summary = "Заблокировать пользователя с id. isBlock - true или false",
+        description = "реализовано"
+    )
     @PutMapping("/block/{id}/{isBlock}")
     fun blockUser(@PathVariable id: Long, @PathVariable isBlock: Boolean) {
         return userService.setBlockedToUser(id, isBlock)

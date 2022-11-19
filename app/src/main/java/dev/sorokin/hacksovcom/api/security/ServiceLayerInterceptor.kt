@@ -28,7 +28,9 @@ class ServiceLayerInterceptor(private val sessionUserService: SessionUserService
 
     @Before("protectedMethod()")
     fun handleProtectedMethod(jp: JoinPoint) {
-        if (isApplicationInitializingWorks || !sessionUserService.isUserExists()) return
+        if (!sessionUserService.isUserExists()){
+            throw RuntimeException("Пользователь не имеет прав на совершение операции. Необходима авторизация")
+        }
         val user = sessionUserService.getSessionUser()
         val required: UserRole = (jp.signature as MethodSignature)
             .method

@@ -12,7 +12,10 @@ class MoneyController(
     val sessionUserService: SessionUserService
 ) {
 
-    @Operation(summary = "Пополнить счет по ID счета")
+    @Operation(
+        summary = "Пополнить счет по ID счета",
+        description = "НЕ реализовано"
+    )
     @PostMapping("/deposit/{accountId}")    //todo logging it
     fun depositToAccount(
         @PathVariable accountId: Long,
@@ -22,7 +25,10 @@ class MoneyController(
         moneyService.deposit(user, accountId, amount)
     }
 
-    @Operation(summary = "снять со счета по его ID")
+    @Operation(
+        summary = "снять со счета по его ID",
+        description = "НЕ реализовано"
+    )
     @PostMapping("/withdraw/{accountId}")
     fun withdrawFromAccount(
         @PathVariable accountId: Long,
@@ -32,7 +38,10 @@ class MoneyController(
         moneyService.withdraw(user, accountId, amount)
     }
 
-    @Operation(summary = "Купить валюту за другую валюту")
+    @Operation(
+        summary = "Купить валюту за другую валюту",
+        description = "НЕ реализовано"
+    )
     @PostMapping("/buy")
     fun buyCurrency(
         @RequestParam(name = "target") target: String,
