@@ -4,7 +4,7 @@
   become: yes
   tasks:
   - name: Cleanup
-    command: 'rm -rf /opt/sovcom/*'
+    command: 'rm -rf /opt/sovcom/app'
 
   - name: Copy src
     copy:
