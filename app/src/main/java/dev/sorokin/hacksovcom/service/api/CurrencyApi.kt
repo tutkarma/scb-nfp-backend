@@ -26,7 +26,7 @@ import java.util.*
 @Service
 class CurrencyApi(
     @Value("\${currency-api.token}")
-    val apiToken: String,
+    var apiToken: String,
 ) {
 
     val objectMapper = ObjectMapper()
@@ -70,8 +70,15 @@ class CurrencyApi(
 
         try {
 
-            val resp = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            return objectMapper.readValue(resp.body(), CurrencyPriceResponse::class.java)
+//            val resp = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+//            return objectMapper.readValue(resp.body(), CurrencyPriceResponse::class.java)
+
+            return CurrencyPriceResponse(
+                mapOf("USDRUB" to 60.0),
+                "sd",
+                false,
+                null,
+            )
 
         } catch (e: Exception) {
             logger.error("Ошибка во время получения всех валют")
@@ -108,6 +115,10 @@ class CurrencyApi(
             logger.error("Ошибка во время получения всех валют", e)
             throw RuntimeException("Ошибка во время получения всех валют")
         }
+    }
+
+    fun resetToken(newToken: String) {
+        this.apiToken = newToken;
     }
 
 
