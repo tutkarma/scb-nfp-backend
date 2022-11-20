@@ -70,15 +70,8 @@ class CurrencyApi(
 
         try {
 
-//            val resp = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-//            return objectMapper.readValue(resp.body(), CurrencyPriceResponse::class.java)
-
-            return CurrencyPriceResponse(
-                mapOf("USDRUB" to 60.0),
-                "sd",
-                false,
-                null,
-            )
+            val resp = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
+            return objectMapper.readValue(resp.body(), CurrencyPriceResponse::class.java)
 
         } catch (e: Exception) {
             logger.error("Ошибка во время получения всех валют")
