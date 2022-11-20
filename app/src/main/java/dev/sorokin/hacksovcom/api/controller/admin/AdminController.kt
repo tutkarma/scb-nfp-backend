@@ -1,8 +1,11 @@
 package dev.sorokin.hacksovcom.api.controller.admin
 
+import dev.sorokin.hacksovcom.api.controller.account.CurrencyAccountDto
+import dev.sorokin.hacksovcom.api.controller.account.toDto
 import dev.sorokin.hacksovcom.api.controller.user.dto.UserDto
 import dev.sorokin.hacksovcom.api.controller.user.dto.toDto
 import dev.sorokin.hacksovcom.api.session.SessionUserService
+import dev.sorokin.hacksovcom.service.account.CurrencyAccountService
 import dev.sorokin.hacksovcom.service.user.UserService
 import dev.sorokin.hacksovcom.service.user.domain.User
 import dev.sorokin.hacksovcom.service.user.domain.UserRegistrationRequest
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 class AdminController(
     val userService: UserService,
     val sessionUserService: SessionUserService,
+    val accountService: CurrencyAccountService
 ) {
 
 
@@ -60,6 +64,15 @@ class AdminController(
     @PutMapping("/block/{id}/{isBlock}")
     fun blockUser(@PathVariable id: Long, @PathVariable isBlock: Boolean) {
         return userService.setBlockedToUser(id, isBlock)
+    }
+
+    @Operation(
+        summary = "Получить все счета пользователя по его ID",
+        description = "реализовано"
+    )
+    @GetMapping("/accounts/{id}")
+    fun getUserAccounts(@PathVariable id: Long): List<CurrencyAccountDto> {
+        return accountService.getUserAccounts(id).map { it.toDto() }
     }
 
 

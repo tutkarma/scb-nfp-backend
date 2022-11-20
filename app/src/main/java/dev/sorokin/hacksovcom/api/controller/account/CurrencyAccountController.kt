@@ -35,8 +35,8 @@ class CurrencyAccountController(
     )
     @GetMapping("/my")
     fun getAllMyAccounts(): List<CurrencyAccountDto> {
-        val user = sessionUserService.getSessionUser()
-        return currencyAccountService.getUserAccounts(user).map { it.toDto() }
+        return currencyAccountService.getCurrentUserAccounts()
+            .map { it.toDto() }
     }
 
     @Operation(

@@ -1,6 +1,7 @@
 package dev.sorokin.hacksovcom.service.account
 
 import dev.sorokin.hacksovcom.api.security.Required
+import dev.sorokin.hacksovcom.api.session.SessionUserService
 import dev.sorokin.hacksovcom.repo.account.CurrencyAccountJpaRepo
 import dev.sorokin.hacksovcom.service.user.domain.User
 import dev.sorokin.hacksovcom.service.user.domain.UserRole
@@ -9,12 +10,19 @@ import java.util.*
 
 @Service
 class CurrencyAccountService(
-    val repo: CurrencyAccountJpaRepo
+    val repo: CurrencyAccountJpaRepo,
+    val sessionUserService: SessionUserService,
 ) {
 
     @Required(UserRole.USER)
-    fun getUserAccounts(user: User): List<CurrencyAccount> {
+    fun getCurrentUserAccounts(): List<CurrencyAccount> {
+        val user = sessionUserService.getSessionUser()
         return repo.findAllByOwnerId(user.id!!)
+    }
+
+    @Required(UserRole.ADMIN)
+    fun getUserAccounts(userId: Long): List<CurrencyAccount> {
+        return repo.findAllByOwnerId(userId)
     }
 
     @Required(UserRole.USER)
@@ -38,7 +46,6 @@ class CurrencyAccountService(
         ))
     }
 
-    @Required(UserRole.USER)
     fun createDefaultAccount(user: User): CurrencyAccount {
         return createAccount(user, "RUB")
     }
