@@ -33,7 +33,7 @@ class UserController(
     )
     @GetMapping("/login")
     fun getUser(): UserDto {
-        return sessionUserService.getSessionUser().toDto();
+        return sessionUserService.getSessionUser().toDto()
     }
 
 }
