@@ -14,7 +14,7 @@ class MoneyController(
 
     @Operation(
         summary = "Пополнить счет по ID счета",
-        description = "НЕ реализовано"
+        description = "реализовано"
     )
     @PostMapping("/deposit/{accountId}")    //todo logging it
     fun depositToAccount(
@@ -27,7 +27,7 @@ class MoneyController(
 
     @Operation(
         summary = "снять со счета по его ID",
-        description = "НЕ реализовано"
+        description = "реализовано"
     )
     @PostMapping("/withdraw/{accountId}")
     fun withdrawFromAccount(
@@ -40,13 +40,13 @@ class MoneyController(
 
     @Operation(
         summary = "Купить валюту за другую валюту",
-        description = "НЕ реализовано"
+        description = "реализовано"
     )
     @PostMapping("/buy")
     fun buyCurrency(
         @RequestParam(name = "target") target: String,
         @RequestParam(name = "source") source: String,
-        @RequestParam(name = "target") amount: Double
+        @RequestParam(name = "amount") amount: Double
     ) {
         val user = sessionUserService.getSessionUser()
         moneyService.buyCurrency(source, target, amount, user)

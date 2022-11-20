@@ -60,7 +60,7 @@ class CurrencyApi(
 
 
     fun getCurrencyPrice(source: String, target: String): CurrencyPriceResponse {
-        val url = "https://api.apilayer.com/currency_data/live?source=${source}&currencies=${target}"
+        val url = "https://api.apilayer.com/currency_data/live?source=${target}&currencies=${source}"
 
         var request = HttpRequest.newBuilder()
             .GET()
@@ -91,7 +91,7 @@ class CurrencyApi(
         val startFormatted: String = Date.from(startDate).let { formatter.format(it) }
         val endFormatted: String = Date.from(endDate).let { formatter.format(it) }
 
-        val url = "https://api.apilayer.com/currency_data/timeframe?start_date=${startFormatted}&end_date=${endFormatted}&source=$source&currencies=$target"
+        val url = "https://api.apilayer.com/currency_data/timeframe?start_date=${startFormatted}&end_date=${endFormatted}&source=$target&currencies=$source"
 
         var request = HttpRequest.newBuilder()
             .GET()

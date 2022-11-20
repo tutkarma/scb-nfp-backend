@@ -20,14 +20,14 @@ class CurrencyService(
     val currencyApi: CurrencyApi,
 ) {
 
-    @Required(UserRole.USER)
+//    @Required(UserRole.USER)
     fun getAllCurrencies(): List<CurrencyDescriptionDto> {
         return currencyApi.getAllCurrencies().currencies!!
             .map { CurrencyDescriptionDto(it.key, it.value) }
             .toList()
     }
 
-    @Required(UserRole.USER)
+//    @Required(UserRole.USER)
     fun getCurrencyExchange(source: String, target: String): CurrencyPriceDto {
         return currencyApi.getCurrencyPrice(source, target).let {
             CurrencyPriceDto(
@@ -38,7 +38,7 @@ class CurrencyService(
         }
     }
 
-    @Required(UserRole.USER)
+//    @Required(UserRole.USER)
     fun getCurrencyFrame(
         source: String,
         target: String,

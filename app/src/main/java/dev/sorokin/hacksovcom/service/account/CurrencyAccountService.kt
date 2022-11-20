@@ -3,8 +3,10 @@ package dev.sorokin.hacksovcom.service.account
 import dev.sorokin.hacksovcom.api.security.Required
 import dev.sorokin.hacksovcom.api.session.SessionUserService
 import dev.sorokin.hacksovcom.repo.account.CurrencyAccountJpaRepo
+import dev.sorokin.hacksovcom.service.user.UserService
 import dev.sorokin.hacksovcom.service.user.domain.User
 import dev.sorokin.hacksovcom.service.user.domain.UserRole
+import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -12,9 +14,11 @@ import java.util.*
 class CurrencyAccountService(
     val repo: CurrencyAccountJpaRepo,
     val sessionUserService: SessionUserService,
+    @Lazy
+    val userService: UserService,
 ) {
 
-    @Required(UserRole.USER)
+//    @Required(UserRole.USER)
     fun getCurrentUserAccounts(): List<CurrencyAccount> {
         val user = sessionUserService.getSessionUser()
         return repo.findAllByOwnerId(user.id!!)
@@ -22,16 +26,18 @@ class CurrencyAccountService(
 
     @Required(UserRole.ADMIN)
     fun getUserAccounts(userId: Long): List<CurrencyAccount> {
+        if(userService.findById(userId) == null)
+            throw java.lang.RuntimeException("Пользователь не найден")
         return repo.findAllByOwnerId(userId)
     }
 
-    @Required(UserRole.USER)
+//    @Required(UserRole.USER)
     fun getAccount(accountId: Long): CurrencyAccount {
         return repo.findById(accountId).orElse(null) ?:
             throw RuntimeException("Счет с Id: $accountId не найден")
     }
 
-    @Required(UserRole.USER)
+//    @Required(UserRole.USER)
     fun createAccount(user: User, currencyName: String): CurrencyAccount {
         if(repo.findByOwnerIdAndCurrencyName(user.id!!, currencyName) != null)
             throw RuntimeException("Пользователь с id: ${user.id} уже имеет счет в валюте $currencyName")
@@ -46,7 +52,14 @@ class CurrencyAccountService(
         ))
     }
 
+    fun findAccount(id: Long): CurrencyAccount {
+        return repo.findById(id).orElse(null)
+            ?: throw RuntimeException("Счет не найден с id: $id")
+    }
+
     fun createDefaultAccount(user: User): CurrencyAccount {
+        createAccount(user, "EUR")
+        createAccount(user, "USD")
         return createAccount(user, "RUB")
     }
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class AuditService {
 
-    @Required(UserRole.USER)
+//    @Required(UserRole.USER)
     fun getUserAudit(user: User): UserAudit {
         return TODO()
     }
